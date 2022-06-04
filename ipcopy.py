@@ -1,21 +1,15 @@
 from requests import get
 import pyperclip
 
-ipv4 = get('https://api.ipify.org').text
-ipv6 = get('https://api64.ipify.org').text
+type = int(input("Which type? (4/6): "))
 
-print('IPv4 address:    {}'.format(ipv4))
-print('IPv6 address:    {}'.format(ipv6))
-print('Do you want to copy your IP? Press any other key to close the program.')
-print('1: IPv4  2: IPv6')
-
-while True:
-    try:
-        copyip = int(input())
-        if copyip == 1:
-            pyperclip.copy(ipv4)
-        elif copyip == 2:
-            pyperclip.copy(ipv6)
-    except:
-        copyip != (1, 2)
-        break
+if type == 4:
+    ip = get('https://api.ipify.org').text
+    print('IPv4 address:    {}'.format(ip))
+    pyperclip.copy(ip)
+elif type == 6:
+    ip = get('https://api64.ipify.org').text
+    print('IPv4 address:    {}'.format(ip))
+    pyperclip.copy(ip)
+else:
+    print("Wrong input. Only '4' and '6' acceptable. Please try again.")
